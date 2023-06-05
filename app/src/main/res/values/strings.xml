@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SocialGift</string>
+    <string name="your_email">Your email</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="dont_have_an_account_register">Don\'t have an account? Register now</string>
 </resources>
