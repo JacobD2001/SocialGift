@@ -8,8 +8,8 @@ should have are outlined, the design and organization of the screens is up to yo
 ### Authentication, authorization and profile
 
 The account functionalities that need to be implemented are:
-- [ ] Sign In: Log in with a registered user.
-- [ ] Sign Up: Register a new user with their information.
+- [x] Sign In: Log in with a registered user.
+- [x] Sign Up: Register a new user with their information.
 - [ ] Sign Out: Log out of the user's session.
 - [ ] Profile: View the user profile (your own and others').
 - [ ] Edit Profile: Edit your profile information.
