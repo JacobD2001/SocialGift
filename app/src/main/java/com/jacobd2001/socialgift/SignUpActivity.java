@@ -1,5 +1,6 @@
 package com.jacobd2001.socialgift;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.signUpButton.setOnClickListener(view -> signUp());
+        binding.signInLink.setOnClickListener(view -> openSignInScreen());
     }
 
     private void signUp() {
@@ -28,6 +30,13 @@ public class SignUpActivity extends AppCompatActivity {
         if (validateFields(username, email, password, repeatPassword)) {
             Toast.makeText(this, "Email: " + email + "\nPassword: " + password, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void openSignInScreen() {
+        Intent intent = new Intent(this, SignInActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+        startActivity(intent);
+        this.finish();
     }
 
     private boolean validateFields(String username, String email, String password, String repeatPassword) {
