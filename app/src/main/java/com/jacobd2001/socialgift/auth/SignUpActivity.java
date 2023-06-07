@@ -1,4 +1,4 @@
-package com.jacobd2001.socialgift;
+package com.jacobd2001.socialgift.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
