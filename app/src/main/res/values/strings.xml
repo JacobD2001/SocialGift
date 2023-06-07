@@ -11,4 +11,9 @@
     <string name="wishlist">Wishlist</string>
     <string name="friends">Friends</string>
     <string name="account">Account</string>
+    <string name="new_wishlist">New wishlist</string>
+    <string name="search_users">Search users</string>
+    <string name="friend_requests">Friend requests</string>
+    <string name="messages">Messages</string>
+    <string name="edit_account">Edit account</string>
 </resources>
