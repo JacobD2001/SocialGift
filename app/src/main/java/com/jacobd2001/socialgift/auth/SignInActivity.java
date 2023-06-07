@@ -2,11 +2,11 @@ package com.jacobd2001.socialgift.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.jacobd2001.socialgift.databinding.ActivitySignInBinding;
+import com.jacobd2001.socialgift.home.HomeActivity;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
@@ -25,13 +25,18 @@ public class SignInActivity extends AppCompatActivity {
         final String email = binding.emailInput.getEditText() != null ? binding.emailInput.getEditText().getText().toString() : "";
         final String password = binding.passwordInput.getEditText() != null ? binding.passwordInput.getEditText().getText().toString() : "";
 
-        if (validateFields(email, password)) {
-            Toast.makeText(this, "Email: " + email + "\nPassword: " + password, Toast.LENGTH_LONG).show();
-        }
+        if (validateFields(email, password)) openHomeScreen();
     }
 
     private void openSignUpScreen() {
         Intent intent = new Intent(this, SignUpActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+        startActivity(intent);
+        this.finish();
+    }
+
+    private void openHomeScreen() {
+        Intent intent = new Intent(this, HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
         startActivity(intent);
         this.finish();
@@ -74,5 +79,11 @@ public class SignInActivity extends AppCompatActivity {
 
         binding.emailInput.setErrorEnabled(false);
         binding.passwordInput.setErrorEnabled(false);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

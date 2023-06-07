@@ -8,4 +8,7 @@
     <string name="already_have_an_account_sign_in">Already have an account? Sign in</string>
     <string name="repeat_password">Repeat password</string>
     <string name="username">Username</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="friends">Friends</string>
+    <string name="account">Account</string>
 </resources>
