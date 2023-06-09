@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".home.wishlists.WishlistsFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/wishlistsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_wishlist" />
+
+    <LinearLayout
+        android:id="@+id/noWishlistsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:contentDescription="@string/there_are_no_wishlists_yet"
+            android:src="@drawable/undraw_file_manager_re_ms29" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:alpha=".68"
+            android:gravity="center"
+            android:text="@string/there_are_no_wishlists_yet"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

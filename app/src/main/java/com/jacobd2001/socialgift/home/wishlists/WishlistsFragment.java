@@ -1,4 +1,4 @@
-package com.jacobd2001.socialgift.home;
+package com.jacobd2001.socialgift.home.wishlists;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,26 +14,47 @@ import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.jacobd2001.socialgift.R;
-import com.jacobd2001.socialgift.databinding.FragmentWishlistBinding;
+import com.jacobd2001.socialgift.databinding.FragmentWishlistsBinding;
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 
-public class WishlistFragment extends Fragment implements MenuProvider {
+import java.util.ArrayList;
+import java.util.List;
 
-    private FragmentWishlistBinding binding;
+public class WishlistsFragment extends Fragment implements MenuProvider {
+
+    private FragmentWishlistsBinding binding;
+    private List<WishlistItem> wishlists = new ArrayList<>();
+    private final ItemAdapter<WishlistItem> itemAdapter = new ItemAdapter<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedState) {
-        binding = FragmentWishlistBinding.inflate(inflater, container, false);
+        binding = FragmentWishlistsBinding.inflate(inflater, container, false);
         final MenuHost menuHost = getActivity();
         if (menuHost != null)
             menuHost.addMenuProvider(this, getViewLifecycleOwner(), Lifecycle.State.STARTED);
+
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedState) {
         super.onViewCreated(view, savedState);
-        binding.textWishlist.setText("This is the wishlist fragment");
+
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        final FastAdapter<WishlistItem> fastAdapter = FastAdapter.with(itemAdapter);
+
+        binding.wishlistsRecyclerView.setLayoutManager(layoutManager);
+        binding.wishlistsRecyclerView.setAdapter(fastAdapter);
+
+        if (!wishlists.isEmpty()) {
+            binding.wishlistsRecyclerView.setVisibility(View.VISIBLE);
+            binding.noWishlistsLayout.setVisibility(View.GONE);
+        }
+
+        for (WishlistItem item : wishlists) itemAdapter.add(item);
     }
 
     @Override

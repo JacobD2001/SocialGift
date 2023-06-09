@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_wishlist"
-        android:name="com.jacobd2001.socialgift.home.WishlistFragment"
+        android:name="com.jacobd2001.socialgift.home.wishlists.WishlistsFragment"
         android:label="@string/wishlist"
-        tools:layout="@layout/fragment_wishlist" />
+        tools:layout="@layout/fragment_wishlists" />
 
     <fragment
         android:id="@+id/navigation_friends"
