@@ -64,6 +64,19 @@ public class WishlistsFragment extends Fragment implements MenuProvider {
 
     @Override
     public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        if (menuItem.getItemId() == R.id.action_add_wishlist) {
+            NewWishlistDialog dialog = new NewWishlistDialog((name, description) -> {
+                binding.wishlistsRecyclerView.setVisibility(View.VISIBLE);
+                binding.noWishlistsLayout.setVisibility(View.GONE);
+
+                final WishlistItem item = new WishlistItem(name, description);
+                wishlists.add(item);
+                itemAdapter.add(item);
+            });
+            dialog.show(getParentFragmentManager(), "newWishlist");
+            return true;
+        }
+
         return false;
     }
 

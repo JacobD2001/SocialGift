@@ -16,5 +16,8 @@
     <string name="friend_requests">Friend requests</string>
     <string name="messages">Messages</string>
     <string name="edit_account">Edit account</string>
+    <string name="create_new_wishlist">Create new wishlist</string>
+    <string name="wishlist_name">Name</string>
+    <string name="wishlist_description">Description</string>
     <string name="there_are_no_wishlists_yet">There are no wishlists yet.</string>
 </resources>
