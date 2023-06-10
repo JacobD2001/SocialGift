@@ -50,12 +50,12 @@ public class NewWishlistDialog extends DialogFragment {
 
     private boolean validateFields(String name, String description) {
         if (name.isEmpty()) {
-            binding.wishlistNameInput.setError("Name cannot be empty");
+            binding.wishlistNameInput.setError(getString(R.string.wishlist_name_empty_error));
             return false;
         }
 
         if (description.isEmpty()) {
-            binding.wishlistDescriptionInput.setError("Description cannot be empty");
+            binding.wishlistDescriptionInput.setError(getString(R.string.wishlist_description_empty_error));
             return false;
         }
         return true;

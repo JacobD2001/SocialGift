@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.jacobd2001.socialgift.R;
 import com.jacobd2001.socialgift.databinding.ActivitySignInBinding;
 import com.jacobd2001.socialgift.home.HomeActivity;
 
@@ -46,27 +47,27 @@ public class SignInActivity extends AppCompatActivity {
         cleanErrors();
 
         if (email.isEmpty()) {
-            binding.emailInput.setError("Email cannot be empty");
+            binding.emailInput.setError(getString(R.string.email_empty_error));
             return false;
         }
 
         if (!email.contains("@")) {
-            binding.emailInput.setError("Email must contain @");
+            binding.emailInput.setError(getString(R.string.email_at_error));
             return false;
         }
 
         if (password.isEmpty()) {
-            binding.passwordInput.setError("Password cannot be empty");
+            binding.passwordInput.setError(getString(R.string.password_empty_error));
             return false;
         }
 
         if (password.length() < 8) {
-            binding.passwordInput.setError("Password must be at least 8 characters");
+            binding.passwordInput.setError(getString(R.string.password_length_error));
             return false;
         }
 
         if (!password.matches(".*\\d.*")) {
-            binding.passwordInput.setError("Password must contain a number");
+            binding.passwordInput.setError(getString(R.string.password_number_error));
             return false;
         }
 

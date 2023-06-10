@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.jacobd2001.socialgift.R;
 import com.jacobd2001.socialgift.databinding.ActivitySignUpBinding;
 import com.jacobd2001.socialgift.home.HomeActivity;
 
@@ -48,47 +49,47 @@ public class SignUpActivity extends AppCompatActivity {
         cleanErrors();
 
         if (username.isEmpty()) {
-            binding.usernameInput.setError("Username cannot be empty");
+            binding.usernameInput.setError(getString(R.string.username_empty_error));
             return false;
         }
 
         if (username.length() < 3) {
-            binding.usernameInput.setError("Username must be at least 3 characters");
+            binding.usernameInput.setError(getString(R.string.username_length_error));
             return false;
         }
 
         if (!username.matches("[a-zA-Z0-9_]*")) {
-            binding.usernameInput.setError("Username can only contain letters, numbers, and underscores");
+            binding.usernameInput.setError(getString(R.string.username_invalid_error));
             return false;
         }
 
         if (email.isEmpty()) {
-            binding.emailInput.setError("Email cannot be empty");
+            binding.emailInput.setError(getString(R.string.email_empty_error));
             return false;
         }
 
         if (!email.contains("@")) {
-            binding.emailInput.setError("Email must contain @");
+            binding.emailInput.setError(getString(R.string.email_at_error));
             return false;
         }
 
         if (password.isEmpty()) {
-            binding.passwordInput.setError("Password cannot be empty");
+            binding.passwordInput.setError(getString(R.string.password_empty_error));
             return false;
         }
 
         if (password.length() < 8) {
-            binding.passwordInput.setError("Password must be at least 8 characters");
+            binding.passwordInput.setError(getString(R.string.password_length_error));
             return false;
         }
 
         if (!password.matches(".*\\d.*")) {
-            binding.passwordInput.setError("Password must contain a number");
+            binding.passwordInput.setError(getString(R.string.password_number_error));
             return false;
         }
 
         if (!password.equals(repeatPassword)) {
-            binding.repeatPasswordInput.setError("Passwords must match");
+            binding.repeatPasswordInput.setError(getString(R.string.password_match_error));
             return false;
         }
 
