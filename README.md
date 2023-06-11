@@ -29,8 +29,8 @@ The wishlists created in the app will be visible to all users of the platform, w
 reserve gifts and view their information.
 
 The following functionalities need to be implemented:
-- [ ] Create a wishlist.
-- [ ] List the wishlists.
+- [x] Create a wishlist.
+- [x] List the wishlists.
 - [ ] View the details of a wishlist.
 - [ ] Edit a wishlist.
 - [ ] Add/Edit/delete gifts.
