@@ -33,4 +33,5 @@
     <string name="wishlist_description_empty_error">Description cannot be empty</string>
     <string name="wishlist_name">Name</string>
     <string name="wishlist_name_empty_error">Name cannot be empty</string>
+    <string name="edit_wishlist">Edit wishlist</string>
 </resources>

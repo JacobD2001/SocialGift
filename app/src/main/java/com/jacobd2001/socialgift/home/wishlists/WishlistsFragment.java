@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,8 +69,19 @@ public class WishlistsFragment extends Fragment implements MenuProvider, SimpleS
             binding.noWishlistsLayout.setVisibility(View.GONE);
         }
 
-        final Resources.Theme theme = getActivity() == null ? null : getActivity().getTheme();
+        setupItemSwipe();
+
+        for (WishlistItem item : wishlists) itemAdapter.add(item);
+    }
+
+    private void setupItemSwipe() {
+        if (getActivity() == null) return;
+
+        final Resources.Theme theme = getActivity().getTheme();
         final Drawable trashDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.trash_can_outline, theme);
+        final Drawable pencilDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.pencil_outline, theme);
+
+        if (trashDrawable == null || pencilDrawable == null) return;
 
         final SimpleSwipeDragCallback touchCallback = new SimpleSwipeDragCallback(
                 this,
@@ -78,24 +90,33 @@ public class WishlistsFragment extends Fragment implements MenuProvider, SimpleS
                 ItemTouchHelper.LEFT,
                 0x0f000000
         )
+                .withBackgroundSwipeRight(0x0f000000)
+                .withLeaveBehindSwipeRight(pencilDrawable)
                 .withNotifyAllDrops(true)
                 .withSensitivity(10f)
                 .withSurfaceThreshold(0.3f);
 
         final ItemTouchHelper touchHelper = new ItemTouchHelper(touchCallback);
         touchHelper.attachToRecyclerView(binding.wishlistsRecyclerView);
-
-        for (WishlistItem item : wishlists) itemAdapter.add(item);
     }
 
     @Override
-    public void itemSwiped(int i, int i1) {
-        final WishlistItem item = removeItem(i);
+    public void itemSwiped(int index, int direction) {
+        final WishlistItem item = removeItem(index);
 
-        Snackbar.make(binding.getRoot(), getString(R.string.deleted_wishlist, item.getName()), Snackbar.LENGTH_LONG)
-                .setAction(getString(R.string.undo), view -> restoreItem(i, item))
-                .setActionTextColor(Color.WHITE)
-                .show();
+        if (direction == 8) {
+            restoreItem(index, item);
+            EditWishlistDialog dialog = new EditWishlistDialog(item.getName(), item.getDescription(), ((name, description) -> {
+                removeItem(index);
+                addNewItem(name, description);
+            }));
+            dialog.show(getParentFragmentManager(), "newWishlist");
+        } else {
+            Snackbar.make(binding.getRoot(), getString(R.string.deleted_wishlist, item.getName()), Snackbar.LENGTH_LONG)
+                    .setAction(getString(R.string.undo), view -> restoreItem(index, item))
+                    .setActionTextColor(Color.WHITE)
+                    .show();
+        }
     }
 
     @Override
